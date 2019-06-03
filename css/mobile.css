@@ -63,7 +63,6 @@ h1, h2, h3, h4, h5 {
     margin-bottom: 15px;
 }
 
-/* Copy and paste your work from yesterday here and start to refactor into flexbox */
 .wrapper{
 	width:90%;
 	max-width:880px;
@@ -73,19 +72,33 @@ h1, h2, h3, h4, h5 {
 /* ~~~~~~
 Nav
 ~~~~~~ */
+
 nav{
-	display:flex;
-	justify-content: space-between;
-	width:100%;
-    align-items: center;
-    margin: 40px 0;
+  display:flex;
+  flex-direction: column-reverse;
+  justify-content: center;
 }
-.nav-links{
-	display: flex;
-	justify-content: space-between;
-    flex-basis: 70%;
-    margin:20px 0;
+
+nav .nav-links{
+  display: block;
+  text-align: center;
+  width: 100%;
+  margin:0;
 }
+.nav-links li{
+  width: 100%;
+padding: 20px 0;
+  border-top: 1px solid black;
+}
+.nav-links li:last-child{
+  border-bottom: 1px solid black;
+}
+.nav-logo{
+  width:40%;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
 .nav-links a{
 	text-decoration: none;
 	color: grey;
@@ -103,47 +116,53 @@ header nav a:hover{
 		color: black;
 	}
 }
-.nav-logo{
+.nav-logo img, .nav-logo a{
+	width: 100%;
+}
+
+@media (min-width:800px){
+    nav .nav-links{
+      display: flex;
+      flex-direction: row;
+      width: 95%;
+  }
+  .nav-links li{
+    border: 0;
+  }
+  .nav-links li:last-child{
+    border: 0;
+  }
+}
+@media (min-width:1000px){
+
+  nav{
+    flex-direction: row;
+    justify-content: space-between;
+    width:100%;
+    align-items: center;
+    margin: 40px 0;
+  }
+  nav .nav-links{
+    justify-content: space-between;
+    flex-basis: 70%;
+    margin:20px 0;
+  }
+
+  .nav-logo{
     flex-basis: 20%;
     margin:20px 0;
 }
-.nav-logo img, .nav-logo a{
-	width:100%;
-}
-
-@media (max-width:800px){
-    nav{
-        flex-direction: column-reverse;
-        justify-content: center;
-    }
-    nav .nav-links{
-        width: 95%;
-	}
-}
-@media (max-width:500px){
         
-    nav .nav-links{
-        display: block;
-        text-align: center;
-        width: 100%;
-        margin:0;
-    }
-    .nav-links li{
-        width: 100%;
-		padding: 20px 0;
-        border-top: 1px solid black;
-    }
-    .nav-links li:last-child{
-        border-bottom: 1px solid black;
-    }
-    .nav-logo{
-        margin: 0;
-    }
 }
 
 /* ~~~~~~
 Header
 ~~~~~~ */
+
+ .hero{
+  margin-bottom: 60px;
+}
+
 .hero{
 	display:flex;
 	justify-content: space-evenly;
@@ -172,41 +191,40 @@ Header
 	color:grey;
 	box-shadow: inset -12px 12px 5px -10px black;	
 }
-.hero .hero-img{
-	flex-basis: 50%;
+.hero-img{
+  display: none;
 }
-.hero img{
-	width: 100%;
+
+@media (min-width:1000px){
+  .hero{
+    margin: 20px 0;
+  }
+  .hero-img{
+    display: flex;
+    flex-basis: 50%;
+  }
+  .hero img{
+    width: 100%;
+  }
+  .hero.home img{
+    padding: 20px;
+  }
 }
-.hero.home img{
-	padding: 20px;
-}
-@media (max-width:800px){
-    .hero-img{
-        display: none;
-	}
-	header .hero{
-		margin-bottom: 60px;
-	}
-}
+
 /* ~~~~~~
 Main
 ~~~~~~ */
 .content-2col, .content-3col{
-	margin: 30px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
-.content-2col{
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-.content-2col div{
-	width:48%;
-	padding: 0 10px;
-}
-.content-2col img{
-	width: 100%;
-}
+.content-2col div, .content-3col div{
+  width: 100%;
+  margin: 20px 0;
+  padding:0;
+} 
 .content-2col ul{
 	list-style-type: square;
 	margin: 10px;
@@ -215,38 +233,36 @@ Main
 	margin: 10px;
 }
 
-.content-3col{
-	display: flex;
-}
-.content-3col div{
-	padding: 0 5px;
-}
-
-@media (max-width:500px){
-    .content-2col, .content-3col{
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-    }
-    .content-2col div, .content-3col div{
-        width: 100%;
-		margin: 20px 0;
-		padding:0;
-    }
-}
-
 .middle-img{
 	width: 100%;
 }
 
+@media (min-width:800px){
+  .content-2col, .content-3col{
+    margin: 30px 0;
+    flex-direction: row;
+  }
+  .content-2col{
+    justify-content: space-between;
+    align-items: center;
+  }
+  .content-2col div{
+    width:48%;
+    padding: 0 10px;
+  }
+  .content-3col div{
+    padding: 0 5px;
+  }
+}
+
 .content-wrap{
-	display: flex;
-	flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
 	justify-content: space-between;
 	align-content: space-evenly;
 }
 .content-wrap div{
-	width: 48%;
+	width: 100%;
 	padding: 10px;
 	margin: 20px 0;
 	background: lightgrey;
@@ -258,13 +274,17 @@ Main
 	border-radius: 10px;
 }
 
-@media (max-width:500px){
-    .content-wrap{
-		flex-direction: column;
-	}
-	.content-wrap div{
-		width:100%;
-	}
+@media (min-width:800px){
+  .content-wrap{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-evenly;
+  }
+  .content-wrap div{
+    width: 48%;
+    
+  }
 }
 
 /* ~~~~~~
